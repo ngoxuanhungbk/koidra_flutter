@@ -3,6 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_krop/contants/ui_contants.dart';
 import 'package:flutter_krop/gen/assets.gen.dart';
 import 'package:flutter_krop/locator.dart';
+import 'package:flutter_krop/ui/climate/climate_page.dart';
+import 'package:flutter_krop/ui/climate_now/climate_now_page.dart';
+import 'package:flutter_krop/ui/crop/crop_page.dart';
+import 'package:flutter_krop/ui/images/images_page.dart';
 import 'package:flutter_krop/ui/main/drawer_widget.dart';
 import 'package:flutter_krop/ui/main/home_navigation_controller.dart';
 import 'package:flutter_krop/ui/main/route.dart';
@@ -18,9 +22,11 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   static const TAG = 'MainPage';
   var _scaffoldKey = new GlobalKey<ScaffoldState>();
+  String routerPage = OperationsPage.ROUTE_NAME;
 
   @override
   Widget build(BuildContext context) {
+    print("routerPage: " + routerPage);
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: Colors.white,
@@ -72,11 +78,13 @@ class _MainPageState extends State<MainPage> {
               child: Navigator(
             key: locator.get<HomeNavigationController>().navigationKey,
             onGenerateRoute: MainRouter.generateRoute,
-            initialRoute: OperationsPage.ROUTE_NAME,
+            initialRoute: routerPage,
           ))
         ],
       ),
-      drawer: DrawerWidget(),
+      drawer: DrawerWidget((screenRouter) {
+        _pageNavigator(screenRouter);
+      }),
     );
   }
 
@@ -123,5 +131,28 @@ class _MainPageState extends State<MainPage> {
         )
       ],
     );
+  }
+
+  void _pageNavigator(screenRouter) {
+    setState(() {});
+    switch (screenRouter) {
+      case SCREEN_NAME.CLIMATE:
+        routerPage = ClimateNowPage.ROUTE_NAME;
+        break;
+      case SCREEN_NAME.CLIMATE_NOW:
+        routerPage = ClimateNowPage.ROUTE_NAME;
+        break;
+      case SCREEN_NAME.CROP:
+        routerPage = CropPage.ROUTE_NAME;
+        break;
+      case SCREEN_NAME.OPERATIONS:
+        routerPage = OperationsPage.ROUTE_NAME;
+        break;
+      case SCREEN_NAME.IMAGES:
+        routerPage = ImagesPage.ROUTE_NAME;
+        break;
+    }
+    setState(() {});
+    Navigator.of(context).pop();
   }
 }

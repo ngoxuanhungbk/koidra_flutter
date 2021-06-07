@@ -1,7 +1,7 @@
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 
-class ClimatePage extends StatefulWidget {
+class   ClimatePage extends StatefulWidget {
   static const ROUTE_NAME = 'ClimatePage';
   @override
   _ClimatePageState createState() => _ClimatePageState();
