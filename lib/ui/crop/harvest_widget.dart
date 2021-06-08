@@ -28,7 +28,9 @@ class _HarvestState extends State<Harvest> {
 
     return GestureDetector(
       onTap: (){
-        widget.onClick();
+        if(widget.onClick != null){
+          widget.onClick();
+        }
       },
       child: Container(
           margin: EdgeInsets.only(left: 16, right: 16),

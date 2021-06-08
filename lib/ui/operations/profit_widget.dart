@@ -4,7 +4,12 @@ import 'package:flutter_krop/contants/ui_contants.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
 class ProfitWidget extends StatefulWidget {
+  final onClick;
+
+  ProfitWidget({this.onClick});
+
   static const ROUTE_NAME = 'ProfitWidget';
+
   @override
   _ProfitWidgetState createState() => _ProfitWidgetState();
 }
@@ -29,46 +34,48 @@ class _ProfitWidgetState extends State<ProfitWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
-            )
-          ]),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 16,top: 16),
-            child: Text(
-              'Operating Profit',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: ColorContants.grey1,
-                  fontSize: 16),
-            ),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          SfCartesianChart(
-              tooltipBehavior: _tooltipBehavior,
-              legend: Legend(isVisible: true,position:LegendPosition.bottom),
-              primaryXAxis: NumericAxis(),
-              series: <ChartSeries>[
-                StackedLineSeries<ChartData, double>(
-                    dataSource: chartData,
-                    xValueMapper: (ChartData sales, _) => sales.x,
-                    yValueMapper: (ChartData sales, _) => sales.y4)
-              ])
-        ],
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+    return GestureDetector(
+      onTap: () {
+        if(widget.onClick != null){
+          widget.onClick();
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              )
+            ]),
+        child: Stack(
+          children: [
+            SfCartesianChart(
+              title: ChartTitle(
+                text: "Operating Profit",
+                textStyle: Theme.of(context).textTheme.bodyText1,
+                alignment: ChartAlignment.near
+              ),
+                tooltipBehavior: _tooltipBehavior,
+                legend:
+                Legend(isVisible: true, position: LegendPosition.bottom),
+                primaryXAxis: NumericAxis(),
+                series: <ChartSeries>[
+                  StackedLineSeries<ChartData, double>(
+                      dataSource: chartData,
+                      xValueMapper: (ChartData sales, _) => sales.x,
+                      yValueMapper: (ChartData sales, _) => sales.y4)
+                ]),
+            Align(child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Icon(Icons.zoom_out_map_sharp, size: 18,),
+            ), alignment: Alignment.topRight,)
+          ],
+        )
       ),
     );
   }

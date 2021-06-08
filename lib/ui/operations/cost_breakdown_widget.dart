@@ -5,6 +5,10 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 class CostBreakdownWidget extends StatefulWidget {
   static const ROUTE_NAME = 'CostBreakdownWidget';
+  final onClick;
+
+  CostBreakdownWidget({this.onClick});
+
   @override
   _CostBreakdownWidgetState createState() => _CostBreakdownWidgetState();
 }
@@ -26,45 +30,52 @@ class _CostBreakdownWidgetState extends State<CostBreakdownWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.grey.withOpacity(0.5),
-              spreadRadius: 5,
-              blurRadius: 7,
-              offset: Offset(0, 3), // changes position of shadow
+    return GestureDetector(
+      onTap: () {
+        if (widget.onClick != null) {
+          widget.onClick();
+        }
+      },
+      child: Container(
+        decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8),
+            color: Colors.white,
+            boxShadow: [
+              BoxShadow(
+                color: Colors.grey.withOpacity(0.5),
+                spreadRadius: 5,
+                blurRadius: 7,
+                offset: Offset(0, 3), // changes position of shadow
+              )
+            ]),
+        child: Stack(
+          children: [
+            SfCircularChart(
+                title: ChartTitle(
+                    text: "Operating Profit",
+                    textStyle: Theme.of(context).textTheme.bodyText1,
+                    alignment: ChartAlignment.near),
+                tooltipBehavior: _tooltipBehavior,
+                legend:
+                    Legend(isVisible: true, position: LegendPosition.bottom),
+                series: <CircularSeries>[
+                  PieSeries<ChartData, String>(
+                      dataSource: chartData,
+                      xValueMapper: (ChartData sales, _) => sales.x,
+                      yValueMapper: (ChartData sales, _) => sales.y1)
+                ]),
+            Align(
+              child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(
+                  Icons.zoom_out_map_sharp,
+                  size: 18,
+                ),
+              ),
+              alignment: Alignment.topRight,
             )
-          ]),
-      child: Column(
-        children: [
-          Padding(
-            padding: EdgeInsets.only(left: 16,top: 16),
-            child: Text(
-              'Cost Breakdown',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  color: ColorContants.grey1,
-                  fontSize: 16),
-            ),
-          ),
-          SizedBox(
-            height: 24,
-          ),
-          SfCircularChart(
-              tooltipBehavior: _tooltipBehavior,
-              legend: Legend(isVisible: true,position:LegendPosition.bottom),
-              series: <CircularSeries>[
-                PieSeries<ChartData, String>(
-                    dataSource: chartData,
-                    xValueMapper: (ChartData sales, _) => sales.x,
-                    yValueMapper: (ChartData sales, _) => sales.y1)
-              ])
-        ],
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
+          ],
+        ),
       ),
     );
   }

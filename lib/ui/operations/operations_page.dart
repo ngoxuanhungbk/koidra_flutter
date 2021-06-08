@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_krop/ui/operations/cost_breakdown_widget.dart';
 import 'package:flutter_krop/ui/operations/cost_income_widget.dart';
 import 'package:flutter_krop/ui/operations/profit_widget.dart';
+import 'package:flutter_krop/utils/show_dialog_widget.dart';
 
 class OperationsPage extends StatefulWidget {
   static const ROUTE_NAME = 'OperationsPage';
@@ -37,21 +38,33 @@ class _OperationsPageState extends State<OperationsPage> {
             ),
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
-                child: CostIncomeWidget()),
+                child: CostIncomeWidget(
+                  onClick: () {
+                    ShowDialogUtils.showChartDetail(
+                        context, CostIncomeWidget());
+                  },
+                )),
             SizedBox(
               height: 16,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: ProfitWidget(),
-            ),
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                child: ProfitWidget(
+                  onClick: () {
+                    ShowDialogUtils.showChartDetail(context, ProfitWidget());
+                  },
+                )),
             SizedBox(
               height: 16,
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16),
-              child: CostBreakdownWidget(),
-            ),
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: CostBreakdownWidget(
+                  onClick: () {
+                    ShowDialogUtils.showChartDetail(
+                        context, CostBreakdownWidget());
+                  },
+                )),
             SizedBox(
               height: 60,
             ),
