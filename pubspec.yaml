@@ -37,10 +37,15 @@ dependencies:
   json_annotation: ^3.0.1
   shared_preferences: ^2.0.5
   freezed: ^0.12.6
+  persistent_bottom_nav_bar: ^4.0.2
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner:
+  json_serializable:
+  freezed:
+  flutter_gen:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

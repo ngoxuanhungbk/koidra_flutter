@@ -7,6 +7,10 @@ enum SCREEN_NAME { OPERATIONS, CROP, CLIMATE, CLIMATE_NOW, IMAGES }
 
 class DrawerWidget extends StatefulWidget {
   static const ROUTE_NAME = 'DrawerWidget';
+  final callback;
+
+
+  DrawerWidget(this.callback);
 
   @override
   _DrawerWidgetState createState() => _DrawerWidgetState();
@@ -58,6 +62,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             if (screenName != SCREEN_NAME.OPERATIONS) {
               setState(() {
                 screenName = SCREEN_NAME.OPERATIONS;
+                widget.callback(screenName);
               });
             }
           }),
@@ -67,6 +72,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             if (screenName != SCREEN_NAME.CROP) {
               setState(() {
                 screenName = SCREEN_NAME.CROP;
+                widget.callback(screenName);
               });
             }
           }),
@@ -75,6 +81,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             if (screenName != SCREEN_NAME.CLIMATE) {
               setState(() {
                 screenName = SCREEN_NAME.CLIMATE;
+                widget.callback(screenName);
               });
             }
           }),
@@ -83,6 +90,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             if (screenName != SCREEN_NAME.CLIMATE_NOW) {
               setState(() {
                 screenName = SCREEN_NAME.CLIMATE_NOW;
+                widget.callback(screenName);
               });
             }
           }),
@@ -91,6 +99,7 @@ class _DrawerWidgetState extends State<DrawerWidget> {
             if (screenName != SCREEN_NAME.IMAGES) {
               setState(() {
                 screenName = SCREEN_NAME.IMAGES;
+                widget.callback(screenName);
               });
             }
           }),
