@@ -20,155 +20,160 @@ class _AuthPageState extends State<AuthPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 40),
-        child: Column(
-          children: [
-            SizedBox(
-              height: 80,
-            ),
-            Text(
-              'Sign In',
-              style: TextStyle(
-                  color: Color(0xFF363A45),
-                  fontSize: 34,
-                  fontWeight: FontWeight.w500),
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            CustomTextInput(
-              placeHolder: "Email",
-              validator: (String value) {
-                return value == null || value.isEmpty
-                    ? "Value is requried"
-                    : null;
-              },
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            CustomTextInput(
-              placeHolder: "Password",
-              validator: (String value) {
-                return value == null || value.isEmpty
-                    ? "Value is requried"
-                    : null;
-              },
-              isPassword: true,
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            InkWell(child: Container(
-              height: 48,
-              child: Text(
+      body: SingleChildScrollView(
+        child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 40),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 80,
+              ),
+              Text(
                 'Sign In',
                 style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 16,
+                    color: Color(0xFF363A45),
+                    fontSize: 34,
                     fontWeight: FontWeight.w500),
               ),
-              alignment: Alignment.center,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  color: Color(0xFF2C67DD)),
-            ),onTap: (){
-              context.read<AuthBloc>().authorized();
-            },),
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              children: [
-                Expanded(
-                    child: Container(
-                  height: 1,
-                  color: ColorContants.borderColor,
-                )),
-                Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 12),
-                  child: Text('or'),
+              SizedBox(
+                height: 40,
+              ),
+              CustomTextInput(
+                placeHolder: "Email",
+                validator: (String value) {
+                  return value == null || value.isEmpty
+                      ? "Value is requried"
+                      : null;
+                },
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              CustomTextInput(
+                placeHolder: "Password",
+                validator: (String value) {
+                  return value == null || value.isEmpty
+                      ? "Value is requried"
+                      : null;
+                },
+                isPassword: true,
+              ),
+              SizedBox(
+                height: 24,
+              ),
+              InkWell(
+                child: Container(
+                  height: 48,
+                  child: Text(
+                    'Sign In',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500),
+                  ),
+                  alignment: Alignment.center,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      color: Color(0xFF2C67DD)),
                 ),
-                Expanded(
-                    child: Container(
-                  height: 1,
-                  color: ColorContants.borderColor,
-                )),
-              ],
-            ),
-            SizedBox(
-              height: 40,
-            ),
-            Container(
-              height: 48,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border:
-                      Border.all(color: ColorContants.borderColor, width: 1)),
-              child: Row(
+                onTap: () {
+                  context.read<AuthBloc>().authorized();
+                },
+              ),
+              SizedBox(
+                height: 40,
+              ),
+              Row(
                 children: [
-                  Assets.images.windows.image(width: 24, height: 24),
-                  SizedBox(
-                    width: 12,
+                  Expanded(
+                      child: Container(
+                    height: 1,
+                    color: ColorContants.borderColor,
+                  )),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 12),
+                    child: Text('or'),
                   ),
-                  Text(
-                    'Continue with Microsoft',
-                    style: TextStyle(
-                        color: ColorContants.primaryBlue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  )
+                  Expanded(
+                      child: Container(
+                    height: 1,
+                    color: ColorContants.borderColor,
+                  )),
                 ],
               ),
-            ),
-            SizedBox(
-              height: 24,
-            ),
-            Container(
-              height: 48,
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(12),
-                  border:
-                      Border.all(color: ColorContants.borderColor, width: 1)),
-              child: Row(
-                children: [
-                  Assets.images.google.image(width: 24, height: 24),
-                  SizedBox(
-                    width: 12,
-                  ),
-                  Text(
-                    'Continue with Google',
-                    style: TextStyle(
-                        color: ColorContants.primaryBlue,
-                        fontSize: 16,
-                        fontWeight: FontWeight.w500),
-                  )
-                ],
+              SizedBox(
+                height: 40,
               ),
-            ),
-            SizedBox(
-              height: 35,
-            ),
-            InkWell(
-              child: Text(
-                'Forgot password?',
-                style: TextStyle(
-                    color: ColorContants.primaryBlue,
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500),
+              Container(
+                height: 48,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border:
+                        Border.all(color: ColorContants.borderColor, width: 1)),
+                child: Row(
+                  children: [
+                    Assets.images.windows.image(width: 24, height: 24),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      'Continue with Microsoft',
+                      style: TextStyle(
+                          color: ColorContants.primaryBlue,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
               ),
-              onTap: () {
-                showForgotPassword();
-              },
-            ),
-            SizedBox(
-              height: 35,
-            )
-          ],
-          mainAxisAlignment: MainAxisAlignment.center,
+              SizedBox(
+                height: 24,
+              ),
+              Container(
+                height: 48,
+                padding: EdgeInsets.symmetric(horizontal: 16),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(12),
+                    border:
+                        Border.all(color: ColorContants.borderColor, width: 1)),
+                child: Row(
+                  children: [
+                    Assets.images.google.image(width: 24, height: 24),
+                    SizedBox(
+                      width: 12,
+                    ),
+                    Text(
+                      'Continue with Google',
+                      style: TextStyle(
+                          color: ColorContants.primaryBlue,
+                          fontSize: 16,
+                          fontWeight: FontWeight.w500),
+                    )
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              InkWell(
+                child: Text(
+                  'Forgot password?',
+                  style: TextStyle(
+                      color: ColorContants.primaryBlue,
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500),
+                ),
+                onTap: () {
+                  showForgotPassword();
+                },
+              ),
+              SizedBox(
+                height: 35,
+              )
+            ],
+            mainAxisAlignment: MainAxisAlignment.center,
+          ),
         ),
       ),
     );
@@ -316,37 +321,45 @@ class _AuthPageState extends State<AuthPage> {
               SizedBox(
                 height: 24,
               ),
-              InkWell(child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 40),
-                height: 48,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(12),
-                    border:
-                    Border.all(color: ColorContants.primaryBlue, width: 1)),
-                child: Text(
-                  'Okay, got it',
-                  style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w500,
-                      color: ColorContants.primaryBlue),
+              InkWell(
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 40),
+                  height: 48,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(
+                          color: ColorContants.primaryBlue, width: 1)),
+                  child: Text(
+                    'Okay, got it',
+                    style: TextStyle(
+                        fontSize: 16,
+                        fontWeight: FontWeight.w500,
+                        color: ColorContants.primaryBlue),
+                  ),
+                  alignment: Alignment.center,
                 ),
-                alignment: Alignment.center,
-              ),onTap: (){
-                Navigator.of(context).pop();
-              },),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
               SizedBox(
                 height: 28,
               ),
-              InkWell(child: Text(
-                'Resend email',
-                style: TextStyle(
-                    fontWeight: FontWeight.w500,
-                    fontSize: 14,
-                    color: ColorContants.primaryBlue),
-              ),onTap: (){
-                Navigator.of(context).pop();
-              },),
-              SizedBox(height: 36,)
+              InkWell(
+                child: Text(
+                  'Resend email',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w500,
+                      fontSize: 14,
+                      color: ColorContants.primaryBlue),
+                ),
+                onTap: () {
+                  Navigator.of(context).pop();
+                },
+              ),
+              SizedBox(
+                height: 36,
+              )
             ],
             mainAxisSize: MainAxisSize.min,
           );

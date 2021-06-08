@@ -2,10 +2,12 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 
-import 'chart_sample_data.dart';
-
 class Harvest extends StatefulWidget {
+  final onClick;
   static const ROUTE_NAME = 'Harvest';
+
+
+  Harvest({this.onClick});
 
   @override
   _HarvestState createState() => _HarvestState();
@@ -23,165 +25,102 @@ class _HarvestState extends State<Harvest> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-        padding: EdgeInsets.only(bottom: 60),
-        child: _buildDefaultHistogramChart());
-  }
 
-  /// Get the cartesian chart with histogram series
-  SfCartesianChart _buildDefaultHistogramChart() {
-    return SfCartesianChart(
-      plotAreaBorderWidth: 0,
-      title: ChartTitle(text: 'Examination Result'),
-      primaryXAxis: NumericAxis(
-        majorGridLines: MajorGridLines(width: 0),
-        minimum: 0,
-        maximum: 200,
-      ),
-      primaryYAxis: NumericAxis(
-          name: 'Number of Students',
-          minimum: 0,
-          maximum: 50,
-          axisLine: AxisLine(width: 0),
-          majorTickLines: MajorTickLines(size: 0)),
-      series: _getHistogramSeries(),
-      tooltipBehavior: _tooltipBehavior,
+    return GestureDetector(
+      onTap: (){
+        widget.onClick();
+      },
+      child: Container(
+          margin: EdgeInsets.only(left: 16, right: 16),
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.grey.withOpacity(0.5),
+                  spreadRadius: 5,
+                  blurRadius: 7,
+                  offset: Offset(0, 3), // changes position of shadow
+                )
+              ]),
+          child: Stack(
+            children: [
+              _buildChart(),
+              Align(child: Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Icon(Icons.zoom_out_map_sharp, size: 18,),
+              ), alignment: Alignment.topRight,)
+            ],
+          )),
     );
   }
 
-  ///Get the histogram series
-  List<HistogramSeries<ChartSampleData, double>> _getHistogramSeries() {
-    final List<ChartSampleData> chartData = <ChartSampleData>[
-      ChartSampleData(x: 5.250),
-      ChartSampleData(x: 7.750),
-      ChartSampleData(x: 0),
-      ChartSampleData(x: 8.275),
-      ChartSampleData(x: 9.750),
-      ChartSampleData(x: 7.750),
-      ChartSampleData(x: 8.275),
-      ChartSampleData(x: 6.250),
-      ChartSampleData(x: 5.750),
-      ChartSampleData(x: 5.250),
-      ChartSampleData(x: 23.000),
-      ChartSampleData(x: 26.500),
-      ChartSampleData(x: 26.500),
-      ChartSampleData(x: 27.750),
-      ChartSampleData(x: 25.025),
-      ChartSampleData(x: 26.500),
-      ChartSampleData(x: 28.025),
-      ChartSampleData(x: 29.250),
-      ChartSampleData(x: 26.750),
-      ChartSampleData(x: 27.250),
-      ChartSampleData(x: 26.250),
-      ChartSampleData(x: 25.250),
-      ChartSampleData(x: 34.500),
-      ChartSampleData(x: 25.625),
-      ChartSampleData(x: 25.500),
-      ChartSampleData(x: 26.625),
-      ChartSampleData(x: 36.275),
-      ChartSampleData(x: 36.250),
-      ChartSampleData(x: 26.875),
-      ChartSampleData(x: 40.000),
-      ChartSampleData(x: 43.000),
-      ChartSampleData(x: 46.500),
-      ChartSampleData(x: 47.750),
-      ChartSampleData(x: 45.025),
-      ChartSampleData(x: 56.500),
-      ChartSampleData(x: 56.500),
-      ChartSampleData(x: 58.025),
-      ChartSampleData(x: 59.250),
-      ChartSampleData(x: 56.750),
-      ChartSampleData(x: 57.250),
-      ChartSampleData(x: 46.250),
-      ChartSampleData(x: 55.250),
-      ChartSampleData(x: 44.500),
-      ChartSampleData(x: 45.525),
-      ChartSampleData(x: 55.500),
-      ChartSampleData(x: 46.625),
-      ChartSampleData(x: 46.275),
-      ChartSampleData(x: 56.250),
-      ChartSampleData(x: 46.875),
-      ChartSampleData(x: 43.000),
-      ChartSampleData(x: 46.250),
-      ChartSampleData(x: 55.250),
-      ChartSampleData(x: 44.500),
-      ChartSampleData(x: 45.425),
-      ChartSampleData(x: 55.500),
-      ChartSampleData(x: 56.625),
-      ChartSampleData(x: 46.275),
-      ChartSampleData(x: 56.250),
-      ChartSampleData(x: 46.875),
-      ChartSampleData(x: 43.000),
-      ChartSampleData(x: 46.250),
-      ChartSampleData(x: 55.250),
-      ChartSampleData(x: 44.500),
-      ChartSampleData(x: 45.425),
-      ChartSampleData(x: 55.500),
-      ChartSampleData(x: 46.625),
-      ChartSampleData(x: 56.275),
-      ChartSampleData(x: 46.250),
-      ChartSampleData(x: 56.875),
-      ChartSampleData(x: 41.000),
-      ChartSampleData(x: 63.000),
-      ChartSampleData(x: 66.500),
-      ChartSampleData(x: 67.750),
-      ChartSampleData(x: 65.025),
-      ChartSampleData(x: 66.500),
-      ChartSampleData(x: 76.500),
-      ChartSampleData(x: 78.025),
-      ChartSampleData(x: 79.250),
-      ChartSampleData(x: 76.750),
-      ChartSampleData(x: 77.250),
-      ChartSampleData(x: 66.250),
-      ChartSampleData(x: 75.250),
-      ChartSampleData(x: 74.500),
-      ChartSampleData(x: 65.625),
-      ChartSampleData(x: 75.500),
-      ChartSampleData(x: 76.625),
-      ChartSampleData(x: 76.275),
-      ChartSampleData(x: 66.250),
-      ChartSampleData(x: 66.875),
-      ChartSampleData(x: 80.000),
-      ChartSampleData(x: 85.250),
-      ChartSampleData(x: 87.750),
-      ChartSampleData(x: 89.000),
-      ChartSampleData(x: 88.275),
-      ChartSampleData(x: 89.750),
-      ChartSampleData(x: 97.750),
-      ChartSampleData(x: 98.275),
-      ChartSampleData(x: 96.250),
-      ChartSampleData(x: 95.750),
-      ChartSampleData(x: 95.250)
-    ];
-    return <HistogramSeries<ChartSampleData, double>>[
-      HistogramSeries<ChartSampleData, double>(
-        name: 'Score',
-        dataSource: chartData,
+  final List<ChartSampleDataHarvest> chartData = <ChartSampleDataHarvest>[
+    ChartSampleDataHarvest(x: 'China', y: 0.541, y2: 10),
+    ChartSampleDataHarvest(x: 'Brazil', y: 0.818, y2: 15),
+    ChartSampleDataHarvest(x: 'Bolivia', y: 1.51, y2: 20),
+    ChartSampleDataHarvest(x: 'Mexico', y: 1.302, y2: 25),
+    ChartSampleDataHarvest(x: 'Egypt', y: 2.017, y2: 30),
+    ChartSampleDataHarvest(x: 'Mongolia', y: 1.683, y2: 40),
+  ];
 
+  /// Get the cartesian chart with histogram series
+  SfCartesianChart _buildChart() {
+    return SfCartesianChart(
+        title: ChartTitle(
+            text: 'Harvest',
+            alignment: ChartAlignment.near,
+            textStyle: Theme.of(context).textTheme.bodyText1),
+        primaryXAxis: CategoryAxis(),
+        primaryYAxis: NumericAxis(
+            title: AxisTitle(
+                text: '(Day)',
+                textStyle:
+                Theme.of(context).textTheme.caption.copyWith(fontSize: 9))),
+        axes: <ChartAxis>[
+          NumericAxis(
+              name: 'yAxis',
+              opposedPosition: true,
+              title: AxisTitle(
+                  text: '(Kilogam)',
+                  textStyle: Theme.of(context)
+                      .textTheme
+                      .caption
+                      .copyWith(fontSize: 9)))
+        ],
+        tooltipBehavior: TooltipBehavior(enable: true),
+        series: [
+          ColumnSeries<ChartSampleDataHarvest, String>(
+            isTrackVisible: true,
+            trackColor: const Color(0xff1D3641),
+            borderRadius: BorderRadius.circular(10),
+            color: Color(0xff2C8D7C),
+            dataSource: chartData,
+            width: 0.15,
+            enableTooltip: true,
+            xValueMapper: (ChartSampleDataHarvest sales, _) => sales.x,
+            yValueMapper: (ChartSampleDataHarvest sales, _) => sales.y,
+            dataLabelSettings: DataLabelSettings(
+                isVisible: false, textStyle: const TextStyle(fontSize: 10)),
 
-        /// If we enable this property distribution line is sets in histogram.
-        showNormalDistributionCurve: true,
+          ),
 
-        /// It used to add the color for distribution line.
-        curveColor: const Color.fromRGBO(192, 108, 132, 1),
-        binInterval: 20,
-        borderRadius: BorderRadius.circular(10),
-        trackBorderColor: Colors.green,
+          SplineSeries<ChartSampleDataHarvest, String>(
+              markerSettings: MarkerSettings(isVisible: false),
+              enableTooltip: true,
+              dataSource:chartData,
+              xValueMapper: (ChartSampleDataHarvest sales, _) => sales.x,
+              yValueMapper: (ChartSampleDataHarvest sales, _) => sales.y2,
+              xAxisName: 'xAxis',
+              yAxisName: 'yAxis'),
 
-        /// It used to add the dashes line for distribution line.
-        curveDashArray: <double>[10, 2, 3, 3],
-        width: 0.2,
-        curveWidth: 2.5,
-        yValueMapper: (ChartSampleData sales, _) => sales.x,
-        color: Colors.black,
-        borderColor: Colors.black,
-        pointColorMapper: (ChartSampleData sales, _)=>Colors.black,
-        dataLabelSettings: DataLabelSettings(
-            isVisible: false,
-            labelAlignment: ChartDataLabelAlignment.top,
-            textStyle: const TextStyle(
-                fontWeight: FontWeight.bold, color: Colors.white)),
-      )
-    ];
+        ]);
   }
+}
+
+
+class ChartSampleDataHarvest {
+  var x, y, y2;
+
+  ChartSampleDataHarvest({this.x, this.y, this.y2});
 }

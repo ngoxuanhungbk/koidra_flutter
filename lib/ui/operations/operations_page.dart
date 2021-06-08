@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_krop/ui/operations/cost_breakdown_widget.dart';
 import 'package:flutter_krop/ui/operations/cost_income_widget.dart';
 import 'package:flutter_krop/ui/operations/profit_widget.dart';
-import 'package:syncfusion_flutter_charts/charts.dart';
 
 class OperationsPage extends StatefulWidget {
   static const ROUTE_NAME = 'OperationsPage';
@@ -54,7 +53,7 @@ class _OperationsPageState extends State<OperationsPage> {
               child: CostBreakdownWidget(),
             ),
             SizedBox(
-              height: 16,
+              height: 60,
             ),
           ],
           crossAxisAlignment: CrossAxisAlignment.start,

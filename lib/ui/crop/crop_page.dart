@@ -17,20 +17,72 @@ class _CropPageState extends State<CropPage> {
 
   @override
   Widget build(BuildContext context) {
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(16),
-              child: Text('CROP'),
+            Container(
+              height: 220,
+              child: Harvest(
+                onClick: () {
+                  _showDialog();
+                },
+              ),
             ),
-            Harvest(),
-            FruitGrowthWidget(),
-            LeavesWidget()
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 220,
+              child: FruitGrowthWidget(
+                onClick: () {
+                  _showDialog();
+                },
+              ),
+            ),
+            SizedBox(
+              height: 20,
+            ),
+            Container(
+              height: 220,
+              child: LeavesWidget(
+                onClick: () {
+                  _showDialog();
+                },
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            )
           ],
         ),
       ),
     );
+  }
+
+  _showDialog() {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) {
+          return OrientationBuilder(builder: (context, orientation) {
+            return orientation == Orientation.portrait ? Container(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Container(
+                    height: 220,
+                    child: Harvest(
+                      onClick: () {},
+                    ),
+                  )
+                ],
+              ),
+            )
+                : Harvest(
+                onClick: () {});
+          });
+        });
   }
 }
