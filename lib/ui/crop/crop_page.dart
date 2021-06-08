@@ -2,6 +2,7 @@ import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
 import 'package:flutter_krop/ui/crop/leaves_widget.dart';
 import 'package:flutter_krop/utils/show_dialog_widget.dart';
+import 'package:flutter_krop/widgets/date_time_picker_widget.dart';
 
 import 'fruit_growth_widget.dart';
 import 'harvest_widget.dart';
@@ -18,7 +19,6 @@ class _CropPageState extends State<CropPage> {
 
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -53,6 +53,10 @@ class _CropPageState extends State<CropPage> {
                 },
               ),
             ),
+            SizedBox(height: 40),
+            DateTimePickerWidget((value) {
+              developer.log(value);
+            }),
             SizedBox(
               height: 60,
             )
