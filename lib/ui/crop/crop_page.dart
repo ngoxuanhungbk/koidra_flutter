@@ -54,9 +54,6 @@ class _CropPageState extends State<CropPage> {
               ),
             ),
             SizedBox(height: 40),
-            DateTimePickerWidget((value) {
-              developer.log(value);
-            }),
             SizedBox(
               height: 60,
             )

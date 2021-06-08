@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_krop/main.dart';
 import 'package:flutter_krop/ui/home/home_page.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class Application extends StatefulWidget {
   static const ROUTE_NAME = 'Application';

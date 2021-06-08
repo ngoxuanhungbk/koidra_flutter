@@ -39,27 +39,30 @@ class _LightSensorWidgetState extends State<LightSensorWidget> {
             ],
           )),
           Expanded(flex: 2,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              child: Container(
+                margin: EdgeInsets.only(left: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text(
-                "237 μmol/m2/s",
-                style: Theme.of(context)
-                    .textTheme
-                    .bodyText1
-                    .copyWith(color: Color(0xff657584)),
-              ),
-              Container(
-                width: 24,
-                height: 24,
-                padding: EdgeInsets.all(5),
-                child: Image.asset(
-                  "assets/images/ic_resize.png",
-                
+                Text(
+                  "237 μmol/m2/s",
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1
+                      .copyWith(color: Color(0xff657584)),
                 ),
-              )
+                Container(
+                  width: 24,
+                  height: 24,
+                  padding: EdgeInsets.all(5),
+                  child: Image.asset(
+                    "assets/images/ic_resize.png",
+
+                  ),
+                )
             ],
-          ))
+          ),
+              ))
         ],
       ),
     );
