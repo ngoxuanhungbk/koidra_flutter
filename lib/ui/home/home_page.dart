@@ -141,6 +141,12 @@ class _HomePageState extends State<HomePage> {
         title: ("More"),
         activeColorPrimary: Color(0xff523AF2),
         inactiveColorPrimary: Color(0xff8C9DAB),
+        // onSelectedTabPressWhenNoScreensPushed: (){
+        //   Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MorePage()));
+        // }
+        onPressed: (_){
+          Navigator.of(context).push(MaterialPageRoute(builder: (context)=>MorePage()));
+        }
       ),
     ];
   }
