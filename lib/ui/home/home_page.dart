@@ -105,7 +105,7 @@ class _HomePageState extends State<HomePage> {
       OperationsPage(),
       CropPage(),
       ClimatePage(),
-      ImagesPage(),
+      ImagesPage(context),
       MorePage()
     ];
   }

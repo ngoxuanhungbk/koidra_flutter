@@ -40,6 +40,8 @@ class Asset {
   Asset._();
   static AssetGenImage icCrop = 
       const AssetGenImage('assets/images/ic_crop.png');
+  static AssetGenImage icResize = 
+      const AssetGenImage('assets/images/ic_resize.png');
   static AssetGenImage icCalendar = 
       const AssetGenImage('assets/images/ic_calendar.png');
   static AssetGenImage icImages = 

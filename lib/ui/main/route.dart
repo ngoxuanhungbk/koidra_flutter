@@ -21,8 +21,8 @@ class MainRouter {
         return _getPageRoute(
             routeName: OperationsPage.ROUTE_NAME, viewToShow: ClimateNowPage());
       case ImagesPage.ROUTE_NAME:
-        return _getPageRoute(
-            routeName: OperationsPage.ROUTE_NAME, viewToShow: ImagesPage());
+        // return _getPageRoute(
+        //     routeName: OperationsPage.ROUTE_NAME, viewToShow: ImagesPage);
     }
     return _getPageRoute(
         routeName: settings.name, viewToShow: OperationsPage());
