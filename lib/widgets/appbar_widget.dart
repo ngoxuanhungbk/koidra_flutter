@@ -15,6 +15,7 @@ class AppbarWidget extends StatefulWidget {
 class _AppbarWidgetState extends State<AppbarWidget> {
   static const TAG = 'AppbarWidget';
   var datePickValue = "01/06/2020 - 30/12/2020";
+  var zoneSelected = "Zone 1";
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +25,12 @@ class _AppbarWidgetState extends State<AppbarWidget> {
           Expanded(
               flex: 1,
               child: GestureDetector(
-                onTap: () {},
+                onTap: () {
+                  ShowDialogUtils.showDialogSelectZone(context, (value) {
+                    zoneSelected = value;
+                    setState(() {});
+                  });
+                },
                 child: Container(
                     margin: EdgeInsets.only(right: 5),
                     padding:
@@ -37,7 +43,7 @@ class _AppbarWidgetState extends State<AppbarWidget> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Zone2",
+                          zoneSelected,
                           style: Theme.of(context)
                               .textTheme
                               .bodyText1

@@ -5,9 +5,10 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class Harvest extends StatefulWidget {
   final onClick;
   static const ROUTE_NAME = 'Harvest';
+  final bool isZoom;
+  final bool isShowDetail;
 
-
-  Harvest({this.onClick});
+  Harvest({this.isZoom,this.isShowDetail,this.onClick});
 
   @override
   _HarvestState createState() => _HarvestState();
@@ -17,9 +18,16 @@ class _HarvestState extends State<Harvest> {
   static const TAG = 'Harvest';
   TooltipBehavior _tooltipBehavior;
 
+  ZoomPanBehavior _zoomPanBehavior;
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(enable: true);
+
+    _zoomPanBehavior = ZoomPanBehavior(
+      enablePinching: widget.isZoom ? true : false,
+      zoomMode: ZoomMode.xy,
+      enablePanning: widget.isZoom ? true : false,
+    );
     super.initState();
   }
 
@@ -48,10 +56,27 @@ class _HarvestState extends State<Harvest> {
           child: Stack(
             children: [
               _buildChart(),
-              Align(child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.zoom_out_map_sharp, size: 18,),
-              ), alignment: Alignment.topRight,)
+              Align(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (widget.onClick != null && widget.isShowDetail) {
+                        widget.onClick();
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Icon(
+                      widget.isShowDetail
+                          ? Icons.zoom_out_map_sharp
+                          : Icons.close,
+                      size: 18,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.topRight,
+              )
             ],
           )),
     );
@@ -69,6 +94,8 @@ class _HarvestState extends State<Harvest> {
   /// Get the cartesian chart with histogram series
   SfCartesianChart _buildChart() {
     return SfCartesianChart(
+
+        zoomPanBehavior:_zoomPanBehavior,
         title: ChartTitle(
             text: 'Harvest',
             alignment: ChartAlignment.near,

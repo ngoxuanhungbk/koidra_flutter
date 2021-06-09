@@ -6,8 +6,10 @@ class LeavesWidget extends StatefulWidget {
   static const ROUTE_NAME = 'LeavesWidget';
 
   final onClick;
+  final bool isZoom;
+  final bool isShowDetail;
 
-  LeavesWidget({this.onClick});
+  LeavesWidget({this.isZoom, this.isShowDetail, this.onClick});
 
   @override
   _LeavesWidgetState createState() => _LeavesWidgetState();
@@ -17,16 +19,25 @@ class _LeavesWidgetState extends State<LeavesWidget> {
   static const TAG = 'LeavesWidget';
 
 
+  ZoomPanBehavior _zoomPanBehavior;
+  TooltipBehavior _tooltipBehavior;
+
   @override
   void initState() {
+    _tooltipBehavior = TooltipBehavior(enable: true);
+    _zoomPanBehavior = ZoomPanBehavior(
+      enablePinching: widget.isZoom ? true : false,
+      zoomMode: ZoomMode.xy,
+      enablePanning: widget.isZoom ? true : false,
+    );
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        if(widget.onClick != null){
+      onTap: () {
+        if (widget.onClick != null) {
           widget.onClick();
         }
       },
@@ -46,10 +57,27 @@ class _LeavesWidgetState extends State<LeavesWidget> {
           child: Stack(
             children: [
               _buildChart(),
-              Align(child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.zoom_out_map_sharp, size: 18,),
-              ), alignment: Alignment.topRight,)
+              Align(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (widget.onClick != null && widget.isShowDetail) {
+                        widget.onClick();
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Icon(
+                      widget.isShowDetail
+                          ? Icons.zoom_out_map_sharp
+                          : Icons.close,
+                      size: 18,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.topRight,
+              )
             ],
           )),
     );
@@ -67,23 +95,33 @@ class _LeavesWidgetState extends State<LeavesWidget> {
   /// Get the cartesian chart with histogram series
   SfCartesianChart _buildChart() {
     return SfCartesianChart(
+        tooltipBehavior: _tooltipBehavior,
+        zoomPanBehavior: _zoomPanBehavior,
         title: ChartTitle(
             text: 'Leaves',
             alignment: ChartAlignment.near,
-            textStyle: Theme.of(context).textTheme.bodyText1),
+            textStyle: Theme
+                .of(context)
+                .textTheme
+                .bodyText1),
         primaryXAxis: CategoryAxis(),
         primaryYAxis: NumericAxis(
             title: AxisTitle(
                 text: '(Leaves)',
                 textStyle:
-                    Theme.of(context).textTheme.caption.copyWith(fontSize: 9))),
+                Theme
+                    .of(context)
+                    .textTheme
+                    .caption
+                    .copyWith(fontSize: 9))),
         axes: <ChartAxis>[
           NumericAxis(
               name: 'yAxis',
               opposedPosition: true,
               title: AxisTitle(
                   text: '(Leaves per week)',
-                  textStyle: Theme.of(context)
+                  textStyle: Theme
+                      .of(context)
                       .textTheme
                       .caption
                       .copyWith(fontSize: 9)))
@@ -104,7 +142,7 @@ class _LeavesWidgetState extends State<LeavesWidget> {
 
           SplineSeries<ChartSampleDataLeaves, String>(
               markerSettings: MarkerSettings(isVisible: false),
-              dataSource:chartData,
+              dataSource: chartData,
               xValueMapper: (ChartSampleDataLeaves sales, _) => sales.x,
               yValueMapper: (ChartSampleDataLeaves sales, _) => sales.y2,
               xAxisName: 'xAxis',

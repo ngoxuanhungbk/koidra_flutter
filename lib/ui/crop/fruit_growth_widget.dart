@@ -6,20 +6,37 @@ class FruitGrowthWidget extends StatefulWidget {
   static const ROUTE_NAME = 'FruitGrowthWidget';
 
   final onClick;
+  final bool isZoom;
+  final bool isShowDetail;
 
-  FruitGrowthWidget({this.onClick});
+  FruitGrowthWidget({this.isZoom, this.isShowDetail, this.onClick});
 
   @override
   _FruitGrowthWidgetState createState() => _FruitGrowthWidgetState();
 }
 
 class _FruitGrowthWidgetState extends State<FruitGrowthWidget> {
+  ZoomPanBehavior _zoomPanBehavior;
+  TooltipBehavior _tooltipBehavior;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    _tooltipBehavior = TooltipBehavior(enable: true);
+
+    _zoomPanBehavior = ZoomPanBehavior(
+      enablePinching: widget.isZoom ? true : false,
+      zoomMode: ZoomMode.xy,
+      enablePanning: widget.isZoom ? true : false,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: (){
-        if(widget.onClick != null){
+      onTap: () {
+        if (widget.onClick != null) {
           widget.onClick();
         }
       },
@@ -39,10 +56,27 @@ class _FruitGrowthWidgetState extends State<FruitGrowthWidget> {
           child: Stack(
             children: [
               _buildDefaultSplineChart(),
-              Align(child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.zoom_out_map_sharp, size: 18,),
-              ), alignment: Alignment.topRight,)
+              Align(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (widget.onClick != null && widget.isShowDetail) {
+                        widget.onClick();
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Icon(
+                      widget.isShowDetail
+                          ? Icons.zoom_out_map_sharp
+                          : Icons.close,
+                      size: 18,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.topRight,
+              )
             ],
           )),
     );
@@ -51,12 +85,13 @@ class _FruitGrowthWidgetState extends State<FruitGrowthWidget> {
   /// Returns the defaul spline chart.
   SfCartesianChart _buildDefaultSplineChart() {
     return SfCartesianChart(
+        tooltipBehavior: _tooltipBehavior,
+        zoomPanBehavior: _zoomPanBehavior,
         title: ChartTitle(
             text: 'Fruit Growth',
             alignment: ChartAlignment.near,
             textStyle: Theme.of(context).textTheme.bodyText1),
-        primaryXAxis: CategoryAxis(
-            ),
+        primaryXAxis: CategoryAxis(),
         primaryYAxis: NumericAxis(
             title: AxisTitle(
                 text: '(Day)',
@@ -99,7 +134,6 @@ class _FruitGrowthWidgetState extends State<FruitGrowthWidget> {
               yAxisName: 'yAxis')
         ]);
   }
-
 }
 
 class SalesData {

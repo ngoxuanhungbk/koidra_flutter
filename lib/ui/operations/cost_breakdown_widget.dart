@@ -6,8 +6,9 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 class CostBreakdownWidget extends StatefulWidget {
   static const ROUTE_NAME = 'CostBreakdownWidget';
   final onClick;
-
-  CostBreakdownWidget({this.onClick});
+  final bool isZoom;
+  final bool isShowDetail;
+  CostBreakdownWidget({this.isZoom, this.isShowDetail,this.onClick});
 
   @override
   _CostBreakdownWidgetState createState() => _CostBreakdownWidgetState();
@@ -21,10 +22,16 @@ class _CostBreakdownWidgetState extends State<CostBreakdownWidget> {
     ChartData(x: '2', y1: 1.9, y2: 2.9, y3: 3.9),
   ];
   TooltipBehavior _tooltipBehavior;
+  ZoomPanBehavior _zoomPanBehavior;
 
   @override
   void initState() {
     _tooltipBehavior = TooltipBehavior(enable: true);
+    _zoomPanBehavior = ZoomPanBehavior(
+      enablePinching: widget.isZoom ? true : false,
+      zoomMode: ZoomMode.xy,
+      enablePanning: widget.isZoom ? true : false,
+    );
     super.initState();
   }
 
@@ -52,7 +59,7 @@ class _CostBreakdownWidgetState extends State<CostBreakdownWidget> {
           children: [
             SfCircularChart(
                 title: ChartTitle(
-                    text: "Operating Profit",
+                    text: "Cost Breakdown",
                     textStyle: Theme.of(context).textTheme.bodyText1,
                     alignment: ChartAlignment.near),
                 tooltipBehavior: _tooltipBehavior,
@@ -67,9 +74,20 @@ class _CostBreakdownWidgetState extends State<CostBreakdownWidget> {
             Align(
               child: Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Icon(
-                  Icons.zoom_out_map_sharp,
-                  size: 18,
+                child: GestureDetector(
+                  onTap: () {
+                    if (widget.onClick != null && widget.isShowDetail) {
+                      widget.onClick();
+                    } else {
+                      Navigator.pop(context);
+                    }
+                  },
+                  child: Icon(
+                    widget.isShowDetail
+                        ? Icons.zoom_out_map_sharp
+                        : Icons.close,
+                    size: 18,
+                  ),
                 ),
               ),
               alignment: Alignment.topRight,
