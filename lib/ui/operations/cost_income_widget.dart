@@ -55,7 +55,7 @@ class _CostIncomeWidgetState extends State<CostIncomeWidget> {
           children: [
             SfCartesianChart(
                 title: ChartTitle(
-                    text: "Operating Profit",
+                    text: "Cost and Income",
                     textStyle: Theme.of(context).textTheme.bodyText1,
                     alignment: ChartAlignment.near
                 ),

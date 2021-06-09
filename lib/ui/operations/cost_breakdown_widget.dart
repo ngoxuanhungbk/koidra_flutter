@@ -52,7 +52,7 @@ class _CostBreakdownWidgetState extends State<CostBreakdownWidget> {
           children: [
             SfCircularChart(
                 title: ChartTitle(
-                    text: "Operating Profit",
+                    text: "Cost Breakdown",
                     textStyle: Theme.of(context).textTheme.bodyText1,
                     alignment: ChartAlignment.near),
                 tooltipBehavior: _tooltipBehavior,
