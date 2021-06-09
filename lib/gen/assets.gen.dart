@@ -1,3 +1,4 @@
+// @dart = 2.10
 /// GENERATED CODE - DO NOT MODIFY BY HAND
 /// *****************************************************
 ///  FlutterGen
@@ -11,6 +12,8 @@ class $AssetsImagesGen {
   AssetGenImage get google => const AssetGenImage('assets/images/google.png');
   AssetGenImage get icAccount =>
       const AssetGenImage('assets/images/ic_account.png');
+  AssetGenImage get icArrowsUpAndDown =>
+      const AssetGenImage('assets/images/ic_arrows_up_and_down.png');
   AssetGenImage get icCalendar =>
       const AssetGenImage('assets/images/ic_calendar.png');
   AssetGenImage get icCheck =>
@@ -19,6 +22,7 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/ic_climate.png');
   AssetGenImage get icClimateNow =>
       const AssetGenImage('assets/images/ic_climate_now.png');
+  AssetGenImage get icCo2 => const AssetGenImage('assets/images/ic_co2.png');
   AssetGenImage get icCrop => const AssetGenImage('assets/images/ic_crop.png');
   AssetGenImage get icImages =>
       const AssetGenImage('assets/images/ic_images.png');
@@ -27,6 +31,14 @@ class $AssetsImagesGen {
       const AssetGenImage('assets/images/ic_menu_fold.png');
   AssetGenImage get icOperations =>
       const AssetGenImage('assets/images/ic_operations.png');
+  AssetGenImage get icRelativeHumidity =>
+      const AssetGenImage('assets/images/ic_relative_humidity.png');
+  AssetGenImage get icResize =>
+      const AssetGenImage('assets/images/ic_resize.png');
+  AssetGenImage get icSun => const AssetGenImage('assets/images/ic_sun.png');
+  AssetGenImage get icTemperature =>
+      const AssetGenImage('assets/images/ic_temperature.png');
+  AssetGenImage get icWind => const AssetGenImage('assets/images/ic_wind.png');
   AssetGenImage get imgSplash =>
       const AssetGenImage('assets/images/img_splash.png');
   AssetGenImage get windows => const AssetGenImage('assets/images/windows.png');

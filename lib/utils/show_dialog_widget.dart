@@ -58,9 +58,11 @@ class ShowDialogUtils {
                       crossAxisAlignment: CrossAxisAlignment.end,
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Container(child: DateTimePickerWidget((value) {
-                          dateTimeNewPick = value;
-                        })),
+                        Container(
+                            width: double.infinity,
+                            child: DateTimePickerWidget((value) {
+                              dateTimeNewPick = value;
+                            })),
                         Row(
                           mainAxisSize: MainAxisSize.min,
                           children: [
@@ -88,7 +90,7 @@ class ShowDialogUtils {
                               },
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.only(right: 28.0, left: 8),
+                                    const EdgeInsets.only(right: 28.0, left: 16),
                                 child: Text("Ok",
                                     style: Theme.of(context)
                                         .textTheme
@@ -100,6 +102,65 @@ class ShowDialogUtils {
                         )
                       ],
                     ),
+                  ),
+                ),
+              )
+            ],
+          );
+        });
+  }
+
+  static void showDialogSelectZone(BuildContext context, callBack) {
+    showDialog(
+        barrierDismissible: true,
+        context: context,
+        builder: (BuildContext context) {
+          return Stack(
+            children: [
+              Positioned.fill(
+                top: 50,
+                left: 20,
+                child: Align(
+                  alignment: Alignment.topLeft,
+                  child: Container(
+                    width: 100,
+                    height: 250,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.white,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Colors.grey.withOpacity(0.5),
+                            spreadRadius: 5,
+                            blurRadius: 7,
+                            offset: Offset(0, 3), // changes position of shadow
+                          )
+                        ]),
+                    child: ListView.builder(
+                        itemCount: 6,
+                        itemBuilder: (context, index) {
+                          return GestureDetector(
+                            onTap: () {
+                              callBack("Zone ${index + 1}");
+                              Navigator.pop(context);
+                            },
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(
+                                      top: 8.0, bottom: 8),
+                                  child: Text(
+                                    "Zone ${index + 1}",
+                                    style:
+                                        Theme.of(context).textTheme.subtitle2,
+                                  ),
+                                ),
+                                Divider(),
+                              ],
+                            ),
+                          );
+                        }),
                   ),
                 ),
               )

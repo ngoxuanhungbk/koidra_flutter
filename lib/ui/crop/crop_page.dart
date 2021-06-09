@@ -23,6 +23,7 @@ class _CropPageState extends State<CropPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
+            SizedBox(height: 50,),
             Container(
               height: 220,
               child: Harvest(
