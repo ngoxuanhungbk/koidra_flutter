@@ -3,10 +3,14 @@ import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_krop/application.dart';
+import 'package:flutter_krop/bloc/blocs.dart';
+import 'package:flutter_krop/bloc/setting/season/season_bloc.dart';
+import 'package:flutter_krop/data/datasource/mock/mock_datasource.dart';
+import 'package:flutter_krop/data/repository/app_repository.dart';
+import 'package:flutter_krop/data/repository/app_repository_impl.dart';
 import 'package:flutter_krop/locator.dart';
 import 'package:flutter_krop/ui/auth/auth_page.dart';
 import 'package:flutter_krop/ui/home/home_page.dart';
-import 'package:flutter_krop/ui/main/main_page.dart';
 import 'package:flutter_krop/ui/splash/splash_page.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
@@ -14,10 +18,19 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 import 'bloc/auth/AuthBloc.dart';
 
 void main() async{
+  AppRepository appRepository = AppRepositoryImpl(MockDatasource());
   await setupLocator();
   runApp(MultiBlocProvider(
     providers: [
       BlocProvider(create: (context) => AuthBloc()),
+      BlocProvider(create: (context) {
+        final cubit =  SeasonBloc(appRepository);
+        return cubit;
+      }),
+      BlocProvider(create: (context) {
+        final cubit =  SiteAndZoneBloc(appRepository);
+        return cubit;
+      }),
     ],
     child: Application(),
   ));
@@ -72,6 +85,7 @@ class MyApp extends StatelessWidget {
               color: Colors.white,
               fontSize: 18,
               fontWeight: FontWeight.w600,
+              // da dung
             ),
             caption: ThemeData.light().textTheme.caption.copyWith(
               color: Color(0xff9586a8),
@@ -81,6 +95,7 @@ class MyApp extends StatelessWidget {
             headline6: ThemeData.light().textTheme.headline6.copyWith(
               color: Color(0xff4c5964),
               fontSize: 18,
+              //used
             ),
 
             headline5: ThemeData.light().textTheme.headline5.copyWith(
@@ -119,7 +134,7 @@ class MyApp extends StatelessWidget {
               color: Color(0xff788896),
               fontSize: 16,
               fontWeight: FontWeight.normal,
-
+              //da dung
 
             ),
 
@@ -127,11 +142,13 @@ class MyApp extends StatelessWidget {
               color: Color(0xff4b5c6b),
               fontSize: 15,
               fontWeight: FontWeight.bold,
+              //da dung
             ),
 
             bodyText2:  ThemeData.light().textTheme.bodyText2.copyWith(
               color: Color(0xffffffff),
               fontSize: 15,
+              //da dung
 
 
             ),
@@ -139,6 +156,7 @@ class MyApp extends StatelessWidget {
               color: Colors.black,
               fontSize: 16,
               fontWeight: FontWeight.bold
+                //da dung
             )
         )),
         inputDecorationTheme: InputDecorationTheme(

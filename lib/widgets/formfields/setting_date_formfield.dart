@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
-import '../test_widget.dart';
+import '../calendar_dialog_widget.dart';
 
 class SettingDateFormfield extends FormField<DateTime> {
   SettingDateFormfield({
@@ -14,8 +14,8 @@ class SettingDateFormfield extends FormField<DateTime> {
     bool enabled = true,
     DateTime firstDate,
     DateTime lastDate,
-    String date = '',
-    ValueChanged<String> callbackDate,
+    DateTime date,
+    ValueChanged<DateTime> callbackDate,
     @required DateRangePickerSelectionMode dateRange,
     @required String labelText,
     bool checkColor = false
@@ -28,7 +28,6 @@ class SettingDateFormfield extends FormField<DateTime> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       builder: (FormFieldState state) {
         return Container(
-          padding: EdgeInsets.symmetric(horizontal: 20),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children:[
@@ -42,7 +41,7 @@ class SettingDateFormfield extends FormField<DateTime> {
               child: Row(
                 children: [
                   Text(
-                    date, style: TextStyle(color: Colors.black),
+                    date!=null?DateFormat('dd/MM/yyyy').format(date).toString():'', style: TextStyle(color: Colors.black),
                   ),
                   new Spacer(),
                   Icon(Icons.calendar_today),
@@ -53,9 +52,10 @@ class SettingDateFormfield extends FormField<DateTime> {
                 showDialog(
                     context: state.context,
                     builder: (BuildContext context) {
-                      return TestWidget( (date2){
+                      return CalendarDialogWidget( (date2){
                         state.setState(() {
                           date = date2;
+                          checkColor = true;
                           callbackDate(date);
                         });
                       });

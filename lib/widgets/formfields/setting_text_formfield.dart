@@ -23,7 +23,6 @@ class SettingTextFormfied extends FormField<String>{
   initialValue: initialValue,
   builder: (FormFieldState state) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -39,7 +38,7 @@ class SettingTextFormfied extends FormField<String>{
                 }
               });
             },
-            style: Theme.of(state.context).textTheme.bodyText1,
+
             decoration: InputDecoration(
               fillColor: checkColor?Colors.white:Color(0xfff7f9fa),
               errorText: state.errorText,
