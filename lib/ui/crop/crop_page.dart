@@ -23,12 +23,21 @@ class _CropPageState extends State<CropPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 50,),
+            SizedBox(
+              height: 50,
+            ),
             Container(
               height: 220,
               child: Harvest(
+                isZoom: false,
+                isShowDetail: true,
                 onClick: () {
-                  ShowDialogUtils.showChartDetail(context, Harvest());
+                  ShowDialogUtils.showChartDetail(
+                      context,
+                      Harvest(
+                        isZoom: true,
+                        isShowDetail: false,
+                      ));
                 },
               ),
             ),
@@ -38,8 +47,15 @@ class _CropPageState extends State<CropPage> {
             Container(
               height: 220,
               child: FruitGrowthWidget(
+                isZoom: false,
+                isShowDetail: true,
                 onClick: () {
-                  ShowDialogUtils.showChartDetail(context, FruitGrowthWidget());
+                  ShowDialogUtils.showChartDetail(
+                      context,
+                      FruitGrowthWidget(
+                        isZoom: true,
+                        isShowDetail: false,
+                      ));
                 },
               ),
             ),
@@ -49,8 +65,15 @@ class _CropPageState extends State<CropPage> {
             Container(
               height: 220,
               child: LeavesWidget(
+                isZoom: false,
+                isShowDetail: true,
                 onClick: () {
-                  ShowDialogUtils.showChartDetail(context, LeavesWidget());
+                  ShowDialogUtils.showChartDetail(
+                      context,
+                      LeavesWidget(
+                        isZoom: true,
+                        isShowDetail: false,
+                      ));
                 },
               ),
             ),

@@ -39,9 +39,15 @@ class _OperationsPageState extends State<OperationsPage> {
             Container(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: CostIncomeWidget(
+                  isZoom: false,
+                  isShowDetail: true,
                   onClick: () {
                     ShowDialogUtils.showChartDetail(
-                        context, CostIncomeWidget());
+                        context,
+                        CostIncomeWidget(
+                          isZoom: true,
+                          isShowDetail: false,
+                        ));
                   },
                 )),
             SizedBox(
@@ -50,8 +56,15 @@ class _OperationsPageState extends State<OperationsPage> {
             Padding(
                 padding: EdgeInsets.symmetric(horizontal: 16),
                 child: ProfitWidget(
+                  isZoom: false,
+                  isShowDetail: true,
                   onClick: () {
-                    ShowDialogUtils.showChartDetail(context, ProfitWidget());
+                    ShowDialogUtils.showChartDetail(
+                        context,
+                        ProfitWidget(
+                          isZoom: true,
+                          isShowDetail: false,
+                        ));
                   },
                 )),
             SizedBox(
@@ -60,9 +73,15 @@ class _OperationsPageState extends State<OperationsPage> {
             Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16),
                 child: CostBreakdownWidget(
+                  isZoom: false,
+                  isShowDetail: true,
                   onClick: () {
                     ShowDialogUtils.showChartDetail(
-                        context, CostBreakdownWidget());
+                        context,
+                        CostBreakdownWidget(
+                          isZoom: true,
+                          isShowDetail: false,
+                        ));
                   },
                 )),
             SizedBox(

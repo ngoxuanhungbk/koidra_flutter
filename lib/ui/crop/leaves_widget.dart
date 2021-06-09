@@ -6,8 +6,10 @@ class LeavesWidget extends StatefulWidget {
   static const ROUTE_NAME = 'LeavesWidget';
 
   final onClick;
+  final bool isZoom;
+  final bool isShowDetail;
 
-  LeavesWidget({this.onClick});
+  LeavesWidget({this.isZoom,this.isShowDetail,this.onClick});
 
   @override
   _LeavesWidgetState createState() => _LeavesWidgetState();
@@ -17,8 +19,15 @@ class _LeavesWidgetState extends State<LeavesWidget> {
   static const TAG = 'LeavesWidget';
 
 
+  ZoomPanBehavior _zoomPanBehavior;
   @override
   void initState() {
+
+    _zoomPanBehavior = ZoomPanBehavior(
+      enablePinching: widget.isZoom ? true : false,
+      zoomMode: ZoomMode.xy,
+      enablePanning: widget.isZoom ? true : false,
+    );
     super.initState();
   }
 
@@ -46,10 +55,27 @@ class _LeavesWidgetState extends State<LeavesWidget> {
           child: Stack(
             children: [
               _buildChart(),
-              Align(child: Padding(
-                padding: const EdgeInsets.all(8.0),
-                child: Icon(Icons.zoom_out_map_sharp, size: 18,),
-              ), alignment: Alignment.topRight,)
+              Align(
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: GestureDetector(
+                    onTap: () {
+                      if (widget.onClick != null && widget.isShowDetail) {
+                        widget.onClick();
+                      } else {
+                        Navigator.pop(context);
+                      }
+                    },
+                    child: Icon(
+                      widget.isShowDetail
+                          ? Icons.zoom_out_map_sharp
+                          : Icons.close,
+                      size: 18,
+                    ),
+                  ),
+                ),
+                alignment: Alignment.topRight,
+              )
             ],
           )),
     );
@@ -67,6 +93,7 @@ class _LeavesWidgetState extends State<LeavesWidget> {
   /// Get the cartesian chart with histogram series
   SfCartesianChart _buildChart() {
     return SfCartesianChart(
+      zoomPanBehavior: _zoomPanBehavior,
         title: ChartTitle(
             text: 'Leaves',
             alignment: ChartAlignment.near,
