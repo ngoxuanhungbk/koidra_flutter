@@ -62,7 +62,7 @@ class _ImagesPageState extends State<ImagesPage> {
               ),
               GestureDetector(
                 onTap: () {
-                  _bloc.onViewAllMostRecentClick(context, model.mostRecent);
+                  _bloc.onViewAllMostRecentClick(widget.parentContext, model.mostRecent);
                 },
                 child: Text("View all",
                     style: Theme.of(context).textTheme.bodyText1.copyWith(

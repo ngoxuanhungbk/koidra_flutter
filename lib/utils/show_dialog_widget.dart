@@ -107,4 +107,99 @@ class ShowDialogUtils {
           );
         });
   }
+
+  static void showCameraDetail(BuildContext context, Widget widget) {
+    showDialog(
+        barrierDismissible: false,
+        context: context,
+        builder: (BuildContext context) {
+          return OrientationBuilder(builder: (context, orientation) {
+            return orientation == Orientation.portrait
+                ? Container(
+                    margin: EdgeInsets.all(8),
+                    alignment: Alignment.center,
+                    child: Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.only(
+                                left: 16.0, right: 16, top: 12, bottom: 12),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  "Camera detail",
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .subtitle1
+                                      .copyWith(color: Colors.black),
+                                ),
+                                GestureDetector(
+                                  onTap: () {
+                                    Navigator.of(context).pop();
+                                  },
+                                  child: Icon(Icons.close),
+                                )
+                              ],
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.grey,
+                            height: 1,
+                          ),
+                          Container(
+                            child: widget,
+                          )
+                        ],
+                      ),
+                    ),
+                  )
+                : Container(
+                    decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10))),
+                    margin: EdgeInsets.all(8),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.only(
+                              left: 16.0, right: 16, top: 12, bottom: 12),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                "Camera detail",
+                                style: Theme.of(context)
+                                    .textTheme
+                                    .subtitle1
+                                    .copyWith(color: Colors.black),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).pop();
+                                },
+                                child: Icon(Icons.close),
+                              )
+                            ],
+                          ),
+                        ),
+                        Divider(
+                          color: Colors.grey,
+                          height: 1,
+                        ),
+                        Expanded(
+                          child: widget,
+                        )
+                      ],
+                    ));
+          });
+        });
+  }
 }

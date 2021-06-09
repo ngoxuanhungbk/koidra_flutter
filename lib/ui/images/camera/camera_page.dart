@@ -60,7 +60,7 @@ class _CameraPageState extends State<CameraPage> {
                 );
                 return GestureDetector(
                   onTap: () {
-                    ShowDialogUtils.showChartDetail(context, _item);
+                    ShowDialogUtils.showCameraDetail(context, _item);
                   },
                   child: _item,
                 );
