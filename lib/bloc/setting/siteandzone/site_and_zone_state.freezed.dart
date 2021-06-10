@@ -14,9 +14,9 @@ class _$SiteAndZoneStateTearOff {
   const _$SiteAndZoneStateTearOff();
 
 // ignore: unused_element
-  SiteAndZoneStateData call(List<SiteAndZoneModel> siteAndZones) {
+  SiteAndZoneStateData call(SiteAndZoneModel siteAndZone) {
     return SiteAndZoneStateData(
-      siteAndZones,
+      siteAndZone,
     );
   }
 
@@ -41,13 +41,13 @@ const $SiteAndZoneState = _$SiteAndZoneStateTearOff();
 mixin _$SiteAndZoneState {
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -89,7 +89,7 @@ abstract class $SiteAndZoneStateDataCopyWith<$Res> {
   factory $SiteAndZoneStateDataCopyWith(SiteAndZoneStateData value,
           $Res Function(SiteAndZoneStateData) then) =
       _$SiteAndZoneStateDataCopyWithImpl<$Res>;
-  $Res call({List<SiteAndZoneModel> siteAndZones});
+  $Res call({SiteAndZoneModel siteAndZone});
 }
 
 /// @nodoc
@@ -105,41 +105,40 @@ class _$SiteAndZoneStateDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object siteAndZones = freezed,
+    Object siteAndZone = freezed,
   }) {
     return _then(SiteAndZoneStateData(
-      siteAndZones == freezed
-          ? _value.siteAndZones
-          : siteAndZones as List<SiteAndZoneModel>,
+      siteAndZone == freezed
+          ? _value.siteAndZone
+          : siteAndZone as SiteAndZoneModel,
     ));
   }
 }
 
 /// @nodoc
 class _$SiteAndZoneStateData implements SiteAndZoneStateData {
-  const _$SiteAndZoneStateData(this.siteAndZones)
-      : assert(siteAndZones != null);
+  const _$SiteAndZoneStateData(this.siteAndZone) : assert(siteAndZone != null);
 
   @override
-  final List<SiteAndZoneModel> siteAndZones;
+  final SiteAndZoneModel siteAndZone;
 
   @override
   String toString() {
-    return 'SiteAndZoneState(siteAndZones: $siteAndZones)';
+    return 'SiteAndZoneState(siteAndZone: $siteAndZone)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SiteAndZoneStateData &&
-            (identical(other.siteAndZones, siteAndZones) ||
+            (identical(other.siteAndZone, siteAndZone) ||
                 const DeepCollectionEquality()
-                    .equals(other.siteAndZones, siteAndZones)));
+                    .equals(other.siteAndZone, siteAndZone)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(siteAndZones);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(siteAndZone);
 
   @JsonKey(ignore: true)
   @override
@@ -150,27 +149,27 @@ class _$SiteAndZoneStateData implements SiteAndZoneStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
     assert($default != null);
     assert(loading != null);
     assert(error != null);
-    return $default(siteAndZones);
+    return $default(siteAndZone);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
-      return $default(siteAndZones);
+      return $default(siteAndZone);
     }
     return orElse();
   }
@@ -205,10 +204,10 @@ class _$SiteAndZoneStateData implements SiteAndZoneStateData {
 }
 
 abstract class SiteAndZoneStateData implements SiteAndZoneState {
-  const factory SiteAndZoneStateData(List<SiteAndZoneModel> siteAndZones) =
+  const factory SiteAndZoneStateData(SiteAndZoneModel siteAndZone) =
       _$SiteAndZoneStateData;
 
-  List<SiteAndZoneModel> get siteAndZones;
+  SiteAndZoneModel get siteAndZone;
   @JsonKey(ignore: true)
   $SiteAndZoneStateDataCopyWith<SiteAndZoneStateData> get copyWith;
 }
@@ -252,7 +251,7 @@ class _$SiteAndZoneStateLoading implements SiteAndZoneStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
@@ -265,7 +264,7 @@ class _$SiteAndZoneStateLoading implements SiteAndZoneStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -372,7 +371,7 @@ class _$SiteAndZoneStateError implements SiteAndZoneStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
@@ -385,7 +384,7 @@ class _$SiteAndZoneStateError implements SiteAndZoneStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SiteAndZoneModel> siteAndZones), {
+    TResult $default(SiteAndZoneModel siteAndZone), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),

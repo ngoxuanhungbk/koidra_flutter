@@ -7,13 +7,14 @@ part 'season_model.g.dart';
     explicitToJson: true
 )
 class SeasonModel {
-  final int id;
-  final CultivationModel cultivation;
-  final List<String> crops;
-  final List<String> operational;
-  final ClimateControlModel climate;
+   int id;
+   CultivationModel cultivation;
+   List<String> crops;
+   List<String> operational;
+   ClimateControlModel climate;
 
-  SeasonModel(this.id, this.cultivation, this.crops, this.operational, this.climate);
+   SeasonModel(
+      this.id, this.cultivation, this.crops, this.operational, this.climate);
 
   factory SeasonModel.fromJson(Map<String, dynamic> json) => _$SeasonModelFromJson(json);
 

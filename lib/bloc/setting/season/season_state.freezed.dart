@@ -14,9 +14,9 @@ class _$SeasonStateTearOff {
   const _$SeasonStateTearOff();
 
 // ignore: unused_element
-  SeasonStateData call(List<SeasonModel> seasons) {
+  SeasonStateData call(SeasonModel season) {
     return SeasonStateData(
-      seasons,
+      season,
     );
   }
 
@@ -41,13 +41,13 @@ const $SeasonState = _$SeasonStateTearOff();
 mixin _$SeasonState {
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   });
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -88,7 +88,7 @@ abstract class $SeasonStateDataCopyWith<$Res> {
   factory $SeasonStateDataCopyWith(
           SeasonStateData value, $Res Function(SeasonStateData) then) =
       _$SeasonStateDataCopyWithImpl<$Res>;
-  $Res call({List<SeasonModel> seasons});
+  $Res call({SeasonModel season});
 }
 
 /// @nodoc
@@ -104,37 +104,37 @@ class _$SeasonStateDataCopyWithImpl<$Res>
 
   @override
   $Res call({
-    Object seasons = freezed,
+    Object season = freezed,
   }) {
     return _then(SeasonStateData(
-      seasons == freezed ? _value.seasons : seasons as List<SeasonModel>,
+      season == freezed ? _value.season : season as SeasonModel,
     ));
   }
 }
 
 /// @nodoc
 class _$SeasonStateData implements SeasonStateData {
-  const _$SeasonStateData(this.seasons) : assert(seasons != null);
+  const _$SeasonStateData(this.season) : assert(season != null);
 
   @override
-  final List<SeasonModel> seasons;
+  final SeasonModel season;
 
   @override
   String toString() {
-    return 'SeasonState(seasons: $seasons)';
+    return 'SeasonState(season: $season)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other is SeasonStateData &&
-            (identical(other.seasons, seasons) ||
-                const DeepCollectionEquality().equals(other.seasons, seasons)));
+            (identical(other.season, season) ||
+                const DeepCollectionEquality().equals(other.season, season)));
   }
 
   @override
   int get hashCode =>
-      runtimeType.hashCode ^ const DeepCollectionEquality().hash(seasons);
+      runtimeType.hashCode ^ const DeepCollectionEquality().hash(season);
 
   @JsonKey(ignore: true)
   @override
@@ -144,27 +144,27 @@ class _$SeasonStateData implements SeasonStateData {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
     assert($default != null);
     assert(loading != null);
     assert(error != null);
-    return $default(seasons);
+    return $default(season);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
   }) {
     assert(orElse != null);
     if ($default != null) {
-      return $default(seasons);
+      return $default(season);
     }
     return orElse();
   }
@@ -199,9 +199,9 @@ class _$SeasonStateData implements SeasonStateData {
 }
 
 abstract class SeasonStateData implements SeasonState {
-  const factory SeasonStateData(List<SeasonModel> seasons) = _$SeasonStateData;
+  const factory SeasonStateData(SeasonModel season) = _$SeasonStateData;
 
-  List<SeasonModel> get seasons;
+  SeasonModel get season;
   @JsonKey(ignore: true)
   $SeasonStateDataCopyWith<SeasonStateData> get copyWith;
 }
@@ -245,7 +245,7 @@ class _$SeasonStateLoading implements SeasonStateLoading {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
@@ -258,7 +258,7 @@ class _$SeasonStateLoading implements SeasonStateLoading {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),
@@ -364,7 +364,7 @@ class _$SeasonStateError implements SeasonStateError {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     @required TResult loading(),
     @required TResult error(dynamic error),
   }) {
@@ -377,7 +377,7 @@ class _$SeasonStateError implements SeasonStateError {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object>(
-    TResult $default(List<SeasonModel> seasons), {
+    TResult $default(SeasonModel season), {
     TResult loading(),
     TResult error(dynamic error),
     @required TResult orElse(),

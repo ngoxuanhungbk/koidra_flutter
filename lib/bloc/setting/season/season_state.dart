@@ -4,7 +4,7 @@ part 'season_state.freezed.dart';
 
 @freezed
 abstract class SeasonState with _$SeasonState {
-  const factory SeasonState(List<SeasonModel> seasons) = SeasonStateData;
+  const factory SeasonState(SeasonModel season) = SeasonStateData;
   const factory SeasonState.loading() = SeasonStateLoading;
   const factory SeasonState.error(dynamic error) = SeasonStateError;
 }

@@ -28,41 +28,76 @@ class SettingDateFormfield extends FormField<DateTime> {
       autovalidateMode: AutovalidateMode.onUserInteraction,
       builder: (FormFieldState state) {
         return Container(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children:[
-              Text(labelText, style: Theme.of(state.context).textTheme.subtitle2,),
-              InkWell(
-              child: InputDecorator(
-              decoration: InputDecoration().applyDefaults(Theme.of(state.context).inputDecorationTheme).copyWith(
-                fillColor: checkColor?Colors.white:Color(0xfff7f9fa),
-                errorText: state.errorText,
-              ),
-              child: Row(
-                children: [
-                  Text(
-                    date!=null?DateFormat('dd/MM/yyyy').format(date).toString():'', style: TextStyle(color: Colors.black),
-                  ),
-                  new Spacer(),
-                  Icon(Icons.calendar_today),
-                ],
-              ),
-            ),
-              onTap: ()  {
-                showDialog(
-                    context: state.context,
-                    builder: (BuildContext context) {
-                      return CalendarDialogWidget( (date2){
-                        state.setState(() {
-                          date = date2;
-                          checkColor = true;
-                          callbackDate(date);
+          child: InkWell(
+            onTap: (){
+                    showDialog(
+                        context: state.context,
+                        builder: (BuildContext context) {
+                          return CalendarDialogWidget( (date2){
+                            state.setState(() {
+                              date = date2;
+                              callbackDate(date);
+                            });
+                          });
                         });
-                      });
-                    });
-
-              },),]
+            },
+            child: Stack(
+              children: [
+                TextField(
+                  style: TextStyle(color: Color(0xff363a45), fontSize: 16),
+                  onChanged: (text) {
+                    state.didChange(text);
+                  },
+                  decoration: InputDecoration(
+                    hintText: date!=null?DateFormat('dd/MM/yyyy').format(date).toString():'',
+                      floatingLabelBehavior: date!=null?FloatingLabelBehavior.always:
+                      FloatingLabelBehavior.never,
+                      labelText: labelText,
+                      errorText: state.errorText,
+                    hintStyle: TextStyle(color: Color(0xff363a45), fontSize: 16),
+                    enabled: false
+                  ),
+                ),
+                Positioned(
+                  right: 20,
+                    top: 12,
+                    child: Icon(Icons.calendar_today))
+              ],
+            ),
           ),
+          // child: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children:[
+          //     Text(labelText, style: Theme.of(state.context).textTheme.subtitle2,),
+          //     InkWell(
+          //     child: InputDecorator(
+          //     decoration: InputDecoration().applyDefaults(Theme.of(state.context).inputDecorationTheme).copyWith(
+          //       errorText: state.errorText,
+          //     ),
+          //     child: Row(
+          //       children: [
+          //         Text(
+          //           date!=null?DateFormat('dd/MM/yyyy').format(date).toString():'', style: TextStyle(color: Colors.black),
+          //         ),
+          //         new Spacer(),
+          //         Icon(Icons.calendar_today),
+          //       ],
+          //     ),
+          //   ),
+          //     onTap: ()  {
+          //       showDialog(
+          //           context: state.context,
+          //           builder: (BuildContext context) {
+          //             return CalendarDialogWidget( (date2){
+          //               state.setState(() {
+          //                 date = date2;
+          //                 callbackDate(date);
+          //               });
+          //             });
+          //           });
+          //
+          //     },),]
+          // ),
         );
       });
 }

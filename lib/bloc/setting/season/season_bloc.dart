@@ -9,15 +9,13 @@ class SeasonBloc extends Cubit<SeasonState>{
   SeasonBloc(this.appRepository) : super(SeasonState.loading());
 
   void init(){
-    appRepository.getAllSeason().then((carts) => emit(SeasonStateData(carts)));
+    appRepository.getSeason().then((season) => emit(SeasonStateData(season)));
   }
 
   Future add(SeasonModel seasonModel) async{
-    List<SeasonModel> seasons2;
-    state.maybeWhen((seasons) {
-      seasons2 = [...seasons];
-      seasons2.add(seasonModel);
-      return emit(SeasonState(seasons2));
+    state.maybeWhen((season) {
+      season = seasonModel;
+      return emit(SeasonState(season));
     }, orElse: () => emit(SeasonState.error('error')));
   }
 }

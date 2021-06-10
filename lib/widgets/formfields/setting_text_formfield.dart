@@ -12,10 +12,9 @@ class SettingTextFormfied extends FormField<String>{
     bool enabled = true,
     bool selected = false,
     @required String labelText,
-    Widget suffixIcon,
+    Widget suffix,
     Widget icon,
     Widget prefix,
-    bool checkColor = false
   }) : super(
   key: key,
   validator: validator,
@@ -23,29 +22,17 @@ class SettingTextFormfied extends FormField<String>{
   initialValue: initialValue,
   builder: (FormFieldState state) {
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(labelText, style: Theme.of(state.context).textTheme.subtitle2,),
-          TextField(
-            onChanged: (text) {
-              state.didChange(text);
-              state.setState(() {
-                if(text == ''){
-                  checkColor = false;
-                }else{
-                  checkColor =true;
-                }
-              });
-            },
-
-            decoration: InputDecoration(
-              fillColor: checkColor?Colors.white:Color(0xfff7f9fa),
-              errorText: state.errorText,
-              hintText: hintText
-            ),
-          )
-        ],
+      child: TextField(
+        style: TextStyle(color: Color(0xff363a45), fontSize: 16),
+        onChanged: (text) {
+          state.didChange(text);
+        },
+        decoration: InputDecoration(
+          labelText: labelText,
+          suffix: suffix,
+          errorText: state.errorText,
+          hintText: hintText
+        ),
       ),
     );
   });

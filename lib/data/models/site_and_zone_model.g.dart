@@ -12,9 +12,10 @@ SiteAndZoneModel _$SiteAndZoneModelFromJson(Map<String, dynamic> json) {
         ? null
         : SiteModel.fromJson(json['sites'] as Map<String, dynamic>),
     (json['sensorMetrics'] as List)?.map((e) => e as String)?.toList(),
-    json['zones'] == null
-        ? null
-        : ZoneModel.fromJson(json['zones'] as Map<String, dynamic>),
+    (json['zones'] as List)
+        ?.map((e) =>
+            e == null ? null : ZoneModel.fromJson(e as Map<String, dynamic>))
+        ?.toList(),
     json['timeZone'] as String,
   );
 }
