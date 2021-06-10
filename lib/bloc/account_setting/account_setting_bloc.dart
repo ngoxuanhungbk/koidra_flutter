@@ -4,9 +4,8 @@ import 'package:flutter_krop/bloc/account_setting/account_setting_state.dart';
 import 'package:flutter_krop/bloc/auth/AuthBloc.dart';
 import 'package:flutter_krop/bloc/blocs.dart';
 import 'package:flutter_krop/data/models/account_model.dart';
-import 'package:flutter_krop/main.dart';
+import 'package:flutter_krop/ui/root/root_page.dart';
 import 'package:flutter_krop/utils/show_dialog_widget.dart';
-import 'package:url_launcher/link.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AccountSettingBloc extends Cubit<AccountSettingState> {
