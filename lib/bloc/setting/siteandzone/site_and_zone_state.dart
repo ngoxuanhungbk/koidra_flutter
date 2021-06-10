@@ -4,7 +4,7 @@ part 'site_and_zone_state.freezed.dart';
 
 @freezed
 abstract class SiteAndZoneState with _$SiteAndZoneState {
-  const factory SiteAndZoneState(List<SiteAndZoneModel> siteAndZones) = SiteAndZoneStateData;
+  const factory SiteAndZoneState(SiteAndZoneModel siteAndZone) = SiteAndZoneStateData;
   const factory SiteAndZoneState.loading() = SiteAndZoneStateLoading;
   const factory SiteAndZoneState.error(dynamic error) = SiteAndZoneStateError;
 }

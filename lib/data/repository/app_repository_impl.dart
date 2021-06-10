@@ -12,28 +12,13 @@ class AppRepositoryImpl extends AppRepository{
   AppRepositoryImpl(this.mockDatasource);
 
   @override
-  Future<List<ClimateControlModel>> getAllClimateControl() {
-    return mockDatasource.getAllClimateControl();
+  Future<SeasonModel> getSeason() {
+    return mockDatasource.getSeasons();
   }
 
   @override
-  Future<List<CultivationModel>> getAllCultivation() {
-    return mockDatasource.getAllCultivation();
-  }
-
-  @override
-  Future<List<SiteModel>> getAllSite() {
-    return mockDatasource.getAllSite();
-  }
-
-  @override
-  Future<List<SeasonModel>> getAllSeason() {
-    return mockDatasource.getAllSeasons();
-  }
-
-  @override
-  Future<List<SiteAndZoneModel>> getAllSiteAndZone() {
-    return mockDatasource.getAllSiteAndZone();
+  Future<SiteAndZoneModel> getSiteAndZone() {
+    return mockDatasource.getSiteAndZone();
   }
 
 }

@@ -3,6 +3,7 @@ import 'package:flutter_krop/bloc/blocs.dart';
 import 'package:flutter_krop/data/models/models.dart';
 import 'package:flutter_krop/widgets/more/operational_widget.dart';
 import 'package:flutter_krop/widgets/more/site_info_widget.dart';
+import 'package:flutter_krop/widgets/more/time_zone_widget.dart';
 import 'package:flutter_krop/widgets/more/zones_widget.dart';
 
 class SiteAndZoneSettingPage extends StatefulWidget {
@@ -22,50 +23,7 @@ class _SiteAndZoneSettingPageState extends State<SiteAndZoneSettingPage> with Si
   void initState() {
     super.initState();
     context.read<SiteAndZoneBloc>().init();
-    tabs = [
-      SiteInfoWidget((value){
-        setState(() {
-          siteModel.name = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.type = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.address = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.currency = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.lightTransmissionRatio = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.latitude = value;
-        });
-      },(value){
-        setState(() {
-          siteModel.longtitude = value;
-        });
-      }
-      ),
-      OperationalWidget((sensorMetrics){
-        setState(() {
-          _sensorMetrics = sensorMetrics;
-        });
-      }),
-      ZonesWidget((zones){
-        setState(() {
-          _zones = zones;
-        });
-      }),
-      Container()
-    ];
-    controller = new TabController(length: tabs.length, vsync: this);
+    controller = new TabController(length: 4, vsync: this);
     controller.addListener(() {
       setState(() {
       });
@@ -100,7 +58,7 @@ class _SiteAndZoneSettingPageState extends State<SiteAndZoneSettingPage> with Si
       ),
       body: BlocBuilder<SiteAndZoneBloc, SiteAndZoneState>(
           builder: (context, state) {
-            return state.when((siteAndZones) =>
+            return state.when((siteAndZone) =>
                 Form(
                   key: _formKey,
                   child: Container(
@@ -129,7 +87,62 @@ class _SiteAndZoneSettingPageState extends State<SiteAndZoneSettingPage> with Si
                           child: Container(
                             child: TabBarView(
                               controller: controller,
-                              children: tabs.map((tab) => tab).toList(),
+                              children: [
+                                SiteInfoWidget((value){
+                                  setState(() {
+                                    siteModel.name = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.type = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.address = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.currency = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.lightTransmissionRatio = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.latitude = value;
+                                  });
+                                },(value){
+                                  setState(() {
+                                    siteModel.longtitude = value;
+                                  });
+                                }
+                                ),
+                                OperationalWidget((sensorMetrics){
+                                  setState(() {
+                                    _sensorMetrics = sensorMetrics;
+                                  });
+                                }),
+                                Container(
+                                  child: ListView.separated(itemBuilder: (contex, index){
+                                    return ZonesWidget((zones){
+                                    }, siteAndZone, index);
+                                  },
+                                    separatorBuilder: (context, index){
+                                      return Container(
+                                        padding: EdgeInsets.symmetric(horizontal: 20),
+                                        height: 80,
+                                        child: Center(
+                                          child: Divider(
+                                            color: Colors.black,
+                                            height: 4,
+                                          ),
+                                        ),
+                                      );
+                                    }, itemCount: siteAndZone.zones.length,),
+                                ),
+                                TimeZoneWidget(),
+                              ]
                             ),
                           ),
                         ),

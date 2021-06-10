@@ -7,7 +7,7 @@ part 'site_and_zone_model.g.dart';
 class SiteAndZoneModel {
   SiteModel sites;
   List<String> sensorMetrics;
-  ZoneModel zones;
+  List<ZoneModel> zones;
   String timeZone;
 
   SiteAndZoneModel(this.sites, this.sensorMetrics, this.zones, this.timeZone);

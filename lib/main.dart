@@ -121,7 +121,7 @@ class MyApp extends StatelessWidget {
                   subtitle1: ThemeData.light().textTheme.subtitle1.copyWith(
                         color: Color(0xff788896),
                         fontSize: 16,
-                        fontWeight: FontWeight.normal,
+                        fontWeight: FontWeight.bold,
                         //da dung
                       ),
                   subtitle2: ThemeData.light().textTheme.subtitle2.copyWith(
@@ -143,31 +143,34 @@ class MyApp extends StatelessWidget {
                       ))),
           inputDecorationTheme: InputDecorationTheme(
             prefixStyle: TextStyle(color: Colors.transparent),
-            hintStyle: TextStyle(color: Color(0xffd3dce3), fontSize: 16),
+            hintStyle: TextStyle(color: Color(0xffccced7), fontSize: 16),
             labelStyle: TextStyle(
-                color: Color(0xff414141),
+                color: Color(0xff363a45),
                 fontSize: 12,
-                fontWeight: FontWeight.bold,
-                fontFamily: 'SFUIDisplayBold'),
+                fontWeight: FontWeight.normal),
             // floatingLabelBehavior: FloatingLabelBehavior.always,
             suffixStyle: TextStyle(color: Colors.black),
             errorStyle: TextStyle(color: Colors.red, fontSize: 12),
-            contentPadding: EdgeInsets.symmetric(vertical: 5, horizontal: 15),
+            contentPadding: EdgeInsets.symmetric(vertical: 12, horizontal: 16),
             filled: true,
             hoverColor: Colors.black,
             focusColor: Colors.black,
-            fillColor: Color(0xfff7f9fa),
+            fillColor: Colors.white,
             border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: BorderSide(color: Color(0xffc5ced6), width: 1.5),
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Color(0xff8d93a5), width: 1),
             ),
             enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: BorderSide(color: Color(0xffc5ced6), width: 1.5),
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Color(0xff8d93a5), width: 1),
             ),
             focusedBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(4),
-              borderSide: BorderSide(color: Colors.black, width: 1.5),
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Colors.black, width: 1),
+            ),
+            disabledBorder: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(12),
+              borderSide: BorderSide(color: Color(0xffccced7), width: 1),
             ),
           ),
           elevatedButtonTheme: ElevatedButtonThemeData(
@@ -178,9 +181,7 @@ class MyApp extends StatelessWidget {
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
             padding: EdgeInsets.only(top: 12, bottom: 12, left: 24, right: 24),
           ))),
-
       home: RootPage(),
-      // home: AccountSettingPage(),
     );
   }
 }
