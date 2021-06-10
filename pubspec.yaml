@@ -41,6 +41,7 @@ dependencies:
   tuple: ^2.0.0
   google_fonts: ^2.0.0
   syncfusion_flutter_datepicker: 19.1.67-beta
+  url_launcher: ^6.0.6
 
 dev_dependencies:
   flutter_test:
@@ -49,6 +50,7 @@ dev_dependencies:
   json_serializable:
   freezed:
   flutter_gen:
+  flutter_gen_runner:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

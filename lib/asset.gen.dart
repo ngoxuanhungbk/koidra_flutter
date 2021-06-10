@@ -38,34 +38,42 @@ class AssetGenImage extends AssetImage {
 
 class Asset {
   Asset._();
-  static AssetGenImage google = 
-      const AssetGenImage('assets/images/google.png');
-  static AssetGenImage icAccount = 
-      const AssetGenImage('assets/images/ic_account.png');
-  static AssetGenImage icArrowsUpAndDown = 
-      const AssetGenImage('assets/images/ic_arrows_up_and_down.png');
-  static AssetGenImage icCalendar = 
-      const AssetGenImage('assets/images/ic_calendar.png');
-  static AssetGenImage icCheck = 
-      const AssetGenImage('assets/images/ic_check.png');
-  static AssetGenImage icClimate = 
-      const AssetGenImage('assets/images/ic_climate.png');
-  static AssetGenImage icClimateNow = 
-      const AssetGenImage('assets/images/ic_climate_now.png');
+  static AssetGenImage icCloseEyes = 
+      const AssetGenImage('assets/images/ic_close_eyes.png');
   static AssetGenImage icCrop = 
       const AssetGenImage('assets/images/ic_crop.png');
-  static AssetGenImage icImages = 
-      const AssetGenImage('assets/images/ic_images.png');
-  static AssetGenImage icLogo = 
-      const AssetGenImage('assets/images/ic_logo.png');
-  static AssetGenImage icMenuFold = 
-      const AssetGenImage('assets/images/ic_menu_fold.png');
-  static AssetGenImage icOperations = 
-      const AssetGenImage('assets/images/ic_operations.png');
+  static AssetGenImage icUserManual = 
+      const AssetGenImage('assets/images/ic_user_manual.png');
   static AssetGenImage icResize = 
       const AssetGenImage('assets/images/ic_resize.png');
+  static AssetGenImage icSignout = 
+      const AssetGenImage('assets/images/ic_signout.png');
+  static AssetGenImage icCalendar = 
+      const AssetGenImage('assets/images/ic_calendar.png');
+  static AssetGenImage icImages = 
+      const AssetGenImage('assets/images/ic_images.png');
   static AssetGenImage imgSplash = 
       const AssetGenImage('assets/images/img_splash.png');
+  static AssetGenImage icUser = 
+      const AssetGenImage('assets/images/ic_user.png');
+  static AssetGenImage icClimateNow = 
+      const AssetGenImage('assets/images/ic_climate_now.png');
+  static AssetGenImage icArrowsUpAndDown = 
+      const AssetGenImage('assets/images/ic_arrows_up_and_down.png');
+  static AssetGenImage icOperations = 
+      const AssetGenImage('assets/images/ic_operations.png');
+  static AssetGenImage icAccount = 
+      const AssetGenImage('assets/images/ic_account.png');
+  static AssetGenImage icLogo = 
+      const AssetGenImage('assets/images/ic_logo.png');
   static AssetGenImage windows = 
       const AssetGenImage('assets/images/windows.png');
+  static AssetGenImage icCheck = 
+      const AssetGenImage('assets/images/ic_check.png');
+  static AssetGenImage google = 
+      const AssetGenImage('assets/images/google.png');
+  static AssetGenImage icMenuFold = 
+      const AssetGenImage('assets/images/ic_menu_fold.png');
+  static AssetGenImage icClimate = 
+      const AssetGenImage('assets/images/ic_climate.png');
 }

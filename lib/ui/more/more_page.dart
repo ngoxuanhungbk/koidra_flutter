@@ -1,5 +1,6 @@
 import 'dart:developer' as developer;
 import 'package:flutter/material.dart';
+import 'package:flutter_krop/ui/more/account_setting/account_setting_page.dart';
 import 'package:flutter_krop/ui/more/season_settings_page.dart';
 import 'package:flutter_krop/ui/more/site_and_zone_setting_page.dart';
 import 'package:tuple/tuple.dart';
@@ -32,6 +33,7 @@ class _MorePageState extends State<MorePage> {
         ),
         'Account settings')
   ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,24 +42,30 @@ class _MorePageState extends State<MorePage> {
       ),
       body: Container(
           padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          child: Column(
-            children:[ Container(
+          child: Column(children: [
+            Container(
               height: 300,
               child: ListView.separated(
                   itemBuilder: (context, index) {
                     var item = items[index];
                     return InkWell(
-                      onTap: (){
-                        index==0?Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context)=> SeasonSettingsPage())):
-                        Navigator.of(context).push(
-                            MaterialPageRoute(
-                                builder: (context)=> SiteAndZoneSettingPage()));
+                      onTap: () {
+                        developer.log("onclick: " + index.toString());
+                        index == 0
+                            ? Navigator.of(context).push(MaterialPageRoute(
+                                builder: (context) => SeasonSettingsPage()))
+                            : index == 1
+                                ? Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        SiteAndZoneSettingPage()))
+                                : Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) =>
+                                        AccountSettingPage()));
                       },
                       child: Container(
                         color: Color(0xfff7f9fa),
-                        padding: EdgeInsets.symmetric(horizontal: 15, vertical: 20),
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 15, vertical: 20),
                         child: Row(
                           children: [
                             item.item1,
@@ -81,8 +89,11 @@ class _MorePageState extends State<MorePage> {
                   itemCount: 3),
             ),
             Spacer(),
-            Text('2021 by Koidra Inc', style: Theme.of(context).textTheme.subtitle1,)]
-          )),
+            Text(
+              '2021 by Koidra Inc',
+              style: Theme.of(context).textTheme.subtitle1,
+            )
+          ])),
     );
   }
 }
